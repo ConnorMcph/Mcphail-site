@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Financial Journey — McPhail Financial Services Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.23.3/babel.min.js"></script>
+<style>
+:root {
+  --brand: #2A607C;
+  --brand-dark: #1E4D63;
+  --navy: #1B3A6B;
+  --navy-dark: #0F2448;
+  --blue: #2563EB;
+  --green: #059669;
+  --amber: #D97706;
+  --grey-light: #F1F5F9;
+  --white: #FFFFFF;
+  --text: #1E293B;
+  --text-mid: #475569;
+  --text-light: #94A3B8;
+  --border: #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,.09), 0 4px 6px rgba(0,0,0,.05);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--grey-light); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+.app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+.app-header {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo img { height: 46px; width: auto; display: block; }
+.header-nav { display: flex; gap: 2px; }
+.header-nav a {
+  color: rgba(255,255,255,.7);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  transition: all .15s;
+}
+.header-nav a:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+/* PROGRESS BAR */
+.progress-wrap {
+  background: var(--brand-dark);
+  padding: 0 28px 20px;
+}
+.progress-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+.prog-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .2s;
+}
+.prog-step.active, .prog-step.done { opacity: 1; }
+.prog-step.done { cursor: pointer; }
+.prog-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.15);
+  border: 2px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.6);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .2s;
+}
+.prog-step.active .prog-dot {
+  background: #fff;
+  border-color: #fff;
+  color: var(--brand);
+}
+.prog-step.done .prog-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.prog-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.6);
+  display: none;
+}
+.prog-step.active .prog-label { color: #fff; display: block; }
+.prog-connector { flex: 1; height: 2px; background: rgba(255,255,255,.15); margin: 0 4px; }
+.prog-connector.done { background: var(--green); }
+
+/* MAIN */
+.app-main { flex: 1; padding: 40px 28px 60px; }
+.step-wrap { max-width: 700px; margin: 0 auto; }
+
+/* STEP CARDS */
+.step-card {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.step-header {
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+  padding: 32px 36px;
+  color: #fff;
+}
+.step-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 8px;
+}
+.step-header h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
+.step-header p { font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.6; }
+.step-body { padding: 36px; }
+
+/* CHOICE CARDS */
+.choice-group { margin-bottom: 32px; }
+.choice-group:last-child { margin-bottom: 0; }
+.choice-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+.choice-question {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.choice-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+.choice-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.choice-grid.cols-1 { grid-template-columns: 1fr; }
+.choice-btn {
+  background: var(--grey-light);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: all .15s;
+  line-height: 1.4;
+}
+.choice-btn:hover { border-color: var(--brand); background: #EFF6FB; }
+.choice-btn.selected {
+  border-color: var(--brand);
+  background: #EFF6FB;
+  color: var(--brand);
+  font-weight: 600;
+}
+.choice-btn .choice-icon { font-size: 20px; display: block; margin-bottom: 6px; }
+
+/* FORM FIELDS */
+.field-group { margin-bottom: 22px; }
+.field-group:last-child { margin-bottom: 0; }
+.field-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+}
+.field-group textarea, .field-group select {
+  width: 100%;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--text);
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  transition: border-color .15s;
+  resize: none;
+  line-height: 1.5;
+}
+.field-group textarea:focus, .field-group select:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+.field-hint { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+.optional-tag { font-size: 11px; color: var(--text-light); font-weight: 400; margin-left: 6px; text-transform: none; letter-spacing: 0; }
+
+/* GAP ANALYSIS */
+.gap-grid { display: flex; flex-direction: column; gap: 16px; }
+.gap-card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--grey-light);
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.gap-card.highlighted {
+  border-color: var(--brand);
+  background: #EFF6FB;
+}
+.gap-card.highlighted::before {
+  content: 'Primary Gap';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.gap-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+.gap-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  background: #fff;
+}
+.gap-card.highlighted .gap-icon { background: var(--brand); }
+.gap-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.gap-card-sub { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+.gap-bar-wrap { display: flex; align-items: center; gap: 12px; }
+.gap-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #E2E8F0;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.gap-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width .6s ease;
+}
+.gap-card.highlighted .gap-bar-fill { background: var(--brand); }
+.gap-bar-fill.low { background: #CBD5E1; }
+.gap-bar-fill.medium { background: #94A3B8; }
+.gap-bar-label { font-size: 12px; font-weight: 600; color: var(--text-light); white-space: nowrap; }
+.gap-card.highlighted .gap-bar-label { color: var(--brand); }
+
+/* RECOMMENDATION CARDS */
+.rec-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+.rec-card {
+  background: #fff;
+  border: 2px solid var(--brand);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  box-shadow: var(--shadow-md);
+}
+.rec-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.rec-content { flex: 1; }
+.rec-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.rec-desc { font-size: 14px; color: var(--text-mid); line-height: 1.6; margin-bottom: 14px; }
+.rec-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background .15s;
+}
+.rec-link:hover { background: var(--brand-dark); }
+.rec-link.ghost {
+  background: transparent;
+  border: 1.5px solid var(--brand);
+  color: var(--brand);
+  margin-left: 8px;
+}
+.rec-link.ghost:hover { background: #EFF6FB; }
+
+/* SUMMARY BOX */
+.summary-box {
+  background: var(--grey-light);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.summary-box h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: var(--text-light);
+  margin-bottom: 14px;
+}
+.summary-text {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.copy-btn {
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.copy-btn:hover { background: var(--brand-dark); }
+.copy-btn.copied { background: var(--green); }
+
+/* NAV BUTTONS */
+.step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+.btn-back {
+  background: transparent;
+  color: var(--text-mid);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-back:hover { border-color: var(--brand); color: var(--brand); background: #EFF6FB; }
+.btn-next {
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-md);
+}
+.btn-next:hover { background: var(--brand-dark); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-next:disabled { background: var(--text-light); cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* PILLAR INTRO */
+.pillar-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.pillar-mini {
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  border: 1.5px solid transparent;
+}
+.pillar-mini.prot { background: #EFF6FF; border-color: #BFDBFE; }
+.pillar-mini.wlth { background: #ECFDF5; border-color: #A7F3D0; }
+.pillar-mini h4 { font-size: 14px; font-weight: 700; color: var(--text); margin: 8px 0 6px; }
+.pillar-mini p { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+/* COMPLIANCE */
+.compliance-bar {
+  background: var(--brand-dark);
+  color: rgba(255,255,255,.38);
+  font-size: 11px;
+  text-align: center;
+  padding: 12px 28px;
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .choice-grid { grid-template-columns: 1fr; }
+  .choice-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  .step-header { padding: 24px 24px; }
+  .step-body { padding: 24px; }
+  .pillar-intro { grid-template-columns: 1fr; }
+  .header-nav { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useCallback } = React;
+
+const STEP_LABELS = ['Welcome', 'Your Situation', 'What Matters', 'Your Gaps', 'Next Steps'];
+
+function Header() {
+  return (
+    <header className="app-header">
+      <div className="header-inner">
+        <a href="index.html" className="header-logo">
+          <img src="logo.jpg" alt="McPhail Financial Services Inc." />
+        </a>
+        <nav className="header-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#approach">Our Approach</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function ProgressBar({ step, setStep }) {
+  return (
+    <div className="progress-wrap">
+      <div className="progress-inner">
+        {STEP_LABELS.map((label, i) => {
+          const num = i + 1;
+          const isDone = num < step;
+          const isActive = num === step;
+          return (
+            <React.Fragment key={num}>
+              <div
+                className={`prog-step${isActive ? ' active' : ''}${isDone ? ' done' : ''}`}
+                onClick={() => isDone && setStep(num)}
+                title={isDone ? `Go back to ${label}` : undefined}
+              >
+                <div className="prog-dot">
+                  {isDone ? (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  ) : num}
+                </div>
+                <span className="prog-label">{label}</span>
+              </div>
+              {i < STEP_LABELS.length - 1 && (
+                <div className={`prog-connector${isDone ? ' done' : ''}`} />
+              )}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Step1({ onNext }) {
+  return (
+    <div className="step-wrap">
+      <div className="step-card">
+        <div className="step-header">
+          <div className="step-num">Step 1 of 5 — Welcome</div>
+          <h2>Your plan starts here.</h2>
+          <p>Before we talk products, let's talk about you. This short journey helps us understand where you are and where you want to go.</p>
+        </div>
+        <div className="step-body">
+          <div className="pillar-intro">
+            <div className="pillar-mini prot">
+              <div style={{fontSize:'28px'}}>🛡️</div>
+              <h4>Risk Protection</h4>
+              <p>Safeguards your income and your family if life takes an unexpected turn.</p>
+            </div>
+            <div className="pillar-mini wlth">
+              <div style={{fontSize:'28px'}}>🌱</div>
+              <h4>Wealth Accumulation</h4>
+              <p>Grows your savings toward retirement, family goals, and the life you're building.</p>
+            </div>
+          </div>
+
+          <div style={{background:'#F8FAFC',borderRadius:'var(--radius-sm)',border:'1px solid var(--border)',padding:'24px',marginBottom:'0'}}>
+            <p style={{fontSize:'16px',fontWeight:'600',color:'var(--text)',marginBottom:'10px',lineHeight:'1.4'}}>
+              "Building wealth without protection is vulnerable. Protection without a wealth plan has no destination."
+            </p>
+            <p style={{fontSize:'14px',color:'var(--text-mid)',lineHeight:'1.65'}}>
+              Together, they create a financial plan that can withstand anything life brings — and keep moving toward everything you're working for. This journey will help us figure out where you stand on both.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="step-nav">
+        <div />
+        <button className="btn-next" onClick={onNext}>
+          Let's begin
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ChoiceCard({ icon, label, value, selected, onClick }) {
+  return (
+    <button
+      className={`choice-btn${selected ? ' selected' : ''}`}
+      onClick={() => onClick(value)}
+    >
+      {icon && <span className="choice-icon">{icon}</span>}
+      {label}
+    </button>
+  );
+}
+
+function Step2({ answers, setAnswers, onNext, onBack }) {
+  const update = (key, val) => setAnswers(prev => ({ ...prev, [key]: val }));
+  const ready = answers.lifeStage && answers.primaryConcern && answers.existingCoverage;
+
+  return (
+    <div className="step-wrap">
+      <div className="step-card">
+        <div className="step-header">
+          <div className="step-num">Step 2 of 5 — Your Situation Today</div>
+          <h2>Tell us a little about where you are.</h2>
+          <p>No right or wrong answers — just a starting point for the conversation.</p>
+        </div>
+        <div className="step-body">
+          <div className="choice-group">
+            <div className="choice-question">Where are you in life right now?</div>
+            <div className="choice-grid">
+              {[
+                { icon: '🌱', label: 'Early career', value: 'early-career' },
+                { icon: '👨‍👩‍👧', label: 'Growing family', value: 'growing-family' },
+                { icon: '📈', label: 'Peak earning years', value: 'peak-earning' },
+                { icon: '🏁', label: 'Pre-retirement', value: 'pre-retirement' },
+                { icon: '🌅', label: 'Retired', value: 'retired' },
+              ].map(opt => (
+                <ChoiceCard key={opt.value} {...opt}
+                  selected={answers.lifeStage === opt.value}
+                  onClick={val => update('lifeStage', val)} />
+              ))}
+            </div>
+          </div>
+
+          <div className="choice-group">
+            <div className="choice-question">What's your primary concern today?</div>
+            <div className="choice-grid cols-1">
+              {[
+                { icon: '💰', label: 'Protecting my income', value: 'income' },
+                { icon: '❤️', label: 'Protecting my family', value: 'family' },
+                { icon: '📊', label: 'Building wealth', value: 'wealth' },
+                { icon: '✅', label: 'All of the above', value: 'all' },
+                { icon: '🤔', label: 'Not sure yet', value: 'unsure' },
+              ].map(opt => (
+                <ChoiceCard key={opt.value} {...opt}
+                  selected={answers.primaryConcern === opt.value}
+                  onClick={val => update('primaryConcern', val)} />
+              ))}
+            </div>
+          </div>
+
+          <div className="choice-group">
+            <div className="choice-question">Do you have existing financial coverage?</div>
+            <div className="choice-grid">
+              {[
+                { icon: '✅', label: 'Yes — some coverage', value: 'yes-some' },
+                { icon: '🆕', label: 'Starting fresh', value: 'none' },
+                { icon: '❓', label: 'Not sure', value: 'unsure' },
+              ].map(opt => (
+                <ChoiceCard key={opt.value} {...opt}
+                  selected={answers.existingCoverage === opt.value}
+                  onClick={val => update('existingCoverage', val)} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="step-nav">
+        <button className="btn-back" onClick={onBack}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button className="btn-next" onClick={onNext} disabled={!ready}>
+          Continue
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Step3({ answers, setAnswers, onNext, onBack }) {
+  const update = (key, val) => setAnswers(prev => ({ ...prev, [key]: val }));
+
+  return (
+    <div className="step-wrap">
+      <div className="step-card">
+        <div className="step-header">
+          <div className="step-num">Step 3 of 5 — What Matters Most</div>
+          <h2>Every plan starts with what you're protecting.</h2>
+          <p>A few questions to help us understand your priorities.</p>
+        </div>
+        <div className="step-body">
+          <div className="field-group">
+            <label>What is your most important financial goal?</label>
+            <textarea
+              rows="3"
+              placeholder="e.g. Provide for my children's education and retire comfortably by 60..."
+              value={answers.financialGoal}
+              onChange={e => update('financialGoal', e.target.value)}
+            />
+          </div>
+
+          <div className="field-group">
+            <label>What would change most if your income stopped tomorrow?</label>
+            <textarea
+              rows="3"
+              placeholder="e.g. We'd struggle to make mortgage payments and cover childcare..."
+              value={answers.incomeImpact}
+              onChange={e => update('incomeImpact', e.target.value)}
+            />
+          </div>
+
+          <div className="field-group">
+            <label>Approximate household income range <span className="optional-tag">(optional)</span></label>
+            <select value={answers.incomeRange} onChange={e => update('incomeRange', e.target.value)}>
+              <option value="">Prefer not to say</option>
+              <option value="under-50k">Under $50,000</option>
+              <option value="50-75k">$50,000 – $75,000</option>
+              <option value="75-100k">$75,000 – $100,000</option>
+              <option value="100-150k">$100,000 – $150,000</option>
+              <option value="150-200k">$150,000 – $200,000</option>
+              <option value="200k-plus">$200,000+</option>
+            </select>
+            <div className="field-hint">This helps us calibrate the right coverage levels — it's never required.</div>
+          </div>
+        </div>
+      </div>
+      <div className="step-nav">
+        <button className="btn-back" onClick={onBack}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button className="btn-next" onClick={onNext}>
+          See my gaps
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function GapCard({ icon, title, sub, barWidth, highlighted }) {
+  return (
+    <div className={`gap-card${highlighted ? ' highlighted' : ''}`}>
+      <div className="gap-card-top">
+        <div className="gap-icon">{icon}</div>
+        <div>
+          <div className="gap-card-title">{title}</div>
+          <div className="gap-card-sub">{sub}</div>
+        </div>
+      </div>
+      <div className="gap-bar-wrap">
+        <div className="gap-bar-bg">
+          <div
+            className={`gap-bar-fill${highlighted ? '' : ' low'}`}
+            style={{ width: barWidth + '%' }}
+          />
+        </div>
+        <div className="gap-bar-label">{barWidth}% addressed</div>
+      </div>
+    </div>
+  );
+}
+
+function Step4({ answers, onNext, onBack }) {
+  const c = answers.primaryConcern;
+  const isIncome  = c === 'income' || c === 'all';
+  const isFamily  = c === 'family' || c === 'all';
+  const isWealth  = c === 'wealth' || c === 'all';
+  const isUnsure  = c === 'unsure';
+
+  const stageLookup = {
+    'early-career': 'early-career Canadians',
+    'growing-family': 'growing families',
+    'peak-earning': 'peak earners',
+    'pre-retirement': 'pre-retirement households',
+    'retired': 'retirees',
+  };
+  const stageLabel = stageLookup[answers.lifeStage] || 'Canadians in your situation';
+
+  return (
+    <div className="step-wrap">
+      <div className="step-card">
+        <div className="step-header">
+          <div className="step-num">Step 4 of 5 — Your Gaps</div>
+          <h2>Where your plan may be exposed.</h2>
+          <p>
+            {isUnsure
+              ? `Here's a picture of the three most common gaps for ${stageLabel}. Your advisor can help you figure out which matters most.`
+              : `Based on your answers, here's where ${stageLabel} like you are most commonly underprotected.`}
+          </p>
+        </div>
+        <div className="step-body">
+          <div className="gap-grid">
+            <GapCard
+              icon="💼"
+              title="Income Protection Gap"
+              sub={
+                isIncome
+                  ? `Most ${stageLabel} rely entirely on their income — but 1 in 3 Canadians will face a disability lasting 90+ days before retirement. A DI gap means your mortgage, bills, and lifestyle are all exposed.`
+                  : `Even if income protection isn't your top concern, a disability can derail the rest of your plan quickly.`
+              }
+              barWidth={isIncome ? 25 : 55}
+              highlighted={isIncome}
+            />
+            <GapCard
+              icon="❤️"
+              title="Family Protection Gap"
+              sub={
+                isFamily
+                  ? `For ${stageLabel}, life insurance and critical illness coverage are the pillars that protect your family if you're not there — or if you're too sick to work. A diagnosis without coverage can cost $50,000–$200,000+ out of pocket.`
+                  : `Life and critical illness coverage protect the people who depend on you — worth reviewing at every stage.`
+              }
+              barWidth={isFamily ? 30 : 60}
+              highlighted={isFamily}
+            />
+            <GapCard
+              icon="📊"
+              title="Wealth Accumulation Gap"
+              sub={
+                isWealth
+                  ? `For ${stageLabel}, compound growth is your greatest asset. A plan with no investment strategy means inflation quietly erodes your purchasing power — and retirement arrives sooner than expected.`
+                  : `Even with strong protection, wealth accumulation keeps your plan moving forward.`
+              }
+              barWidth={isWealth ? 20 : 50}
+              highlighted={isWealth}
+            />
+          </div>
+          <div style={{marginTop:'20px',padding:'16px 20px',background:'#FFFBEB',border:'1.5px solid #FDE68A',borderRadius:'var(--radius-sm)',fontSize:'13px',color:'#92400E',lineHeight:'1.6'}}>
+            <strong>Note:</strong> These are illustrative estimates based on typical patterns, not a personal assessment. Your advisor will build a precise picture based on your full situation.
+          </div>
+        </div>
+      </div>
+      <div className="step-nav">
+        <button className="btn-back" onClick={onBack}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button className="btn-next" onClick={onNext}>
+          See next steps
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+const INCOME_RANGES = {
+  'under-50k': 'Under $50,000',
+  '50-75k': '$50,000 – $75,000',
+  '75-100k': '$75,000 – $100,000',
+  '100-150k': '$100,000 – $150,000',
+  '150-200k': '$150,000 – $200,000',
+  '200k-plus': '$200,000+',
+};
+const STAGE_LABELS = {
+  'early-career': 'Early career',
+  'growing-family': 'Growing family',
+  'peak-earning': 'Peak earning years',
+  'pre-retirement': 'Pre-retirement',
+  'retired': 'Retired',
+};
+const CONCERN_LABELS = {
+  'income': 'Protecting my income',
+  'family': 'Protecting my family',
+  'wealth': 'Building wealth',
+  'all': 'All of the above',
+  'unsure': 'Not sure yet',
+};
+const COVERAGE_LABELS = {
+  'yes-some': 'Yes — some coverage',
+  'none': 'Starting fresh',
+  'unsure': 'Not sure',
+};
+
+function buildSummary(answers) {
+  const lines = [
+    'McPhail Financial Services Inc. — Journey Summary',
+    '─'.repeat(48),
+    `Life stage:         ${STAGE_LABELS[answers.lifeStage] || '—'}`,
+    `Primary concern:    ${CONCERN_LABELS[answers.primaryConcern] || '—'}`,
+    `Existing coverage:  ${COVERAGE_LABELS[answers.existingCoverage] || '—'}`,
+  ];
+  if (answers.financialGoal) lines.push(`Financial goal:     ${answers.financialGoal}`);
+  if (answers.incomeImpact)  lines.push(`Income impact:      ${answers.incomeImpact}`);
+  if (answers.incomeRange)   lines.push(`Income range:       ${INCOME_RANGES[answers.incomeRange] || '—'}`);
+  lines.push('─'.repeat(48));
+  lines.push('Generated at mcphailfinancial.ca — for advisor review only.');
+  return lines.join('\n');
+}
+
+function getRecommendations(answers) {
+  const c = answers.primaryConcern;
+  const recs = [];
+  if (c === 'income' || c === 'all' || c === 'unsure') {
+    recs.push({
+      icon: '💼',
+      title: 'Disability Income Protection Review',
+      desc: 'In your meeting, Connor will model your coverage needs and show you exactly what a disability would cost you without protection — and what it takes to close the gap.',
+    });
+  }
+  if (c === 'family' || c === 'all' || c === 'unsure') {
+    recs.push({
+      icon: '❤️',
+      title: 'Critical Illness Protection Review',
+      desc: 'Understand the financial impact of a serious illness and see the coverage options that would protect your family through recovery.',
+    });
+  }
+  if (c === 'wealth' && recs.length === 0) {
+    recs.push({
+      icon: '📊',
+      title: 'Wealth Planning Conversation',
+      desc: 'From RRSPs and TFSAs to long-term investment strategy — a conversation with Connor is the best place to start building your plan.',
+    });
+  }
+  if (recs.length > 2) return recs.slice(0, 2);
+  return recs;
+}
+
+function Step5({ answers, onBack }) {
+  const [copied, setCopied] = useState(false);
+  const summary = buildSummary(answers);
+  const recs = getRecommendations(answers);
+
+  const ADVISOR_EMAIL = 'connor@mcphailfinancial.ca';
+  const ADVISOR_PHONE = '905-541-9486';
+  const mailtoHref = 'mailto:' + ADVISOR_EMAIL
+    + '?subject=' + encodeURIComponent('My Journey Summary — McPhail Financial Services')
+    + '&body=' + encodeURIComponent('Hi Connor,\n\nI just completed the journey on your website. Here is my summary:\n\n' + summary + '\n\nPlease reach out to set up a conversation.\n');
+
+  function copySummary() {
+    navigator.clipboard.writeText(summary).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="step-wrap">
+      <div className="step-card">
+        <div className="step-header">
+          <div className="step-num">Step 5 of 5 — Next Steps</div>
+          <h2>Here's what we'd suggest talking about first.</h2>
+          <p>Based on your answers, these are the conversations that matter most for you right now.</p>
+        </div>
+        <div className="step-body">
+          <div className="rec-grid">
+            {recs.map((rec, i) => (
+              <div className="rec-card" key={i}>
+                <div className="rec-icon">{rec.icon}</div>
+                <div className="rec-content">
+                  <div className="rec-title">{rec.title}</div>
+                  <div className="rec-desc">{rec.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="summary-box">
+            <h4>Your journey summary</h4>
+            <div className="summary-text">{summary}</div>
+            <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
+              <a href={mailtoHref} className="copy-btn" style={{textDecoration:'none',background:'var(--navy, #2A607C)',color:'#fff',borderColor:'var(--navy, #2A607C)'}}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Email my summary to Connor
+              </a>
+              <button className={`copy-btn${copied ? ' copied' : ''}`} onClick={copySummary}>
+                {copied ? (
+                  <>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copy summary
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div style={{marginTop:'20px',padding:'20px 24px',background:'var(--grey-light)',borderRadius:'var(--radius-sm)',border:'1px solid var(--border)'}}>
+            <p style={{fontSize:'14px',fontWeight:'600',color:'var(--text)',marginBottom:'6px'}}>Ready to take the next step?</p>
+            <p style={{fontSize:'14px',color:'var(--text-mid)',lineHeight:'1.65',marginBottom:'14px'}}>Reach out directly and Connor will review your situation in full and prepare a personalized recommendation.</p>
+            <div style={{display:'flex',gap:'18px',flexWrap:'wrap',fontSize:'14px',fontWeight:'600'}}>
+              <a href={'mailto:' + ADVISOR_EMAIL} className="rec-link" style={{display:'inline-flex'}}>✉ {ADVISOR_EMAIL}</a>
+              <a href={'tel:' + ADVISOR_PHONE.replace(/-/g,'')} className="rec-link" style={{display:'inline-flex'}}>☎ {ADVISOR_PHONE}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="step-nav">
+        <button className="btn-back" onClick={onBack}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <a href="index.html" style={{textDecoration:'none'}}>
+          <button className="btn-next" style={{background:'var(--green)'}}>
+            Return home
+          </button>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [step, setStep] = useState(1);
+  const [answers, setAnswers] = useState({
+    lifeStage: '',
+    primaryConcern: '',
+    existingCoverage: '',
+    financialGoal: '',
+    incomeImpact: '',
+    incomeRange: '',
+  });
+
+  return (
+    <div className="app-shell">
+      <Header />
+      <ProgressBar step={step} setStep={setStep} />
+      <main className="app-main">
+        {step === 1 && <Step1 onNext={() => setStep(2)} />}
+        {step === 2 && <Step2 answers={answers} setAnswers={setAnswers} onNext={() => setStep(3)} onBack={() => setStep(1)} />}
+        {step === 3 && <Step3 answers={answers} setAnswers={setAnswers} onNext={() => setStep(4)} onBack={() => setStep(2)} />}
+        {step === 4 && <Step4 answers={answers} onNext={() => setStep(5)} onBack={() => setStep(3)} />}
+        {step === 5 && <Step5 answers={answers} onBack={() => setStep(4)} />}
+      </main>
+      <div className="compliance-bar">
+        The information gathered in this journey is for discussion purposes only and does not constitute financial or insurance advice. All recommendations are subject to a full advisor review. McPhail Financial Services Inc. — Licensed in Ontario, Canada.
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

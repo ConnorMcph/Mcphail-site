@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McPhail Financial Services Inc. — Personal care. Proven strength.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand: #2A607C;
+  --brand-dark: #1E4D63;
+  --navy: #1B3A6B;
+  --navy-dark: #0F2448;
+  --blue: #2563EB;
+  --green: #059669;
+  --grey-light: #F1F5F9;
+  --white: #FFFFFF;
+  --text: #1E293B;
+  --text-mid: #475569;
+  --text-light: #94A3B8;
+  --border: #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,.09), 0 4px 6px rgba(0,0,0,.05);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--brand);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.brand-logo img {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.site-nav a {
+  color: rgba(255,255,255,.75);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all .15s;
+  white-space: nowrap;
+}
+.site-nav a:hover { background: rgba(255,255,255,.1); color: #fff; }
+.site-nav a.active { color: #fff; background: rgba(255,255,255,.08); }
+.nav-cta {
+  background: rgba(255,255,255,.15) !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  color: #fff !important;
+  margin-left: 8px;
+  font-weight: 600 !important;
+}
+.nav-cta:hover { background: rgba(255,255,255,.25) !important; }
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 55%, #162a38 100%);
+  padding: 100px 28px 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.04) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+.hero-inner {
+  max-width: 740px;
+  margin: 0 auto;
+  position: relative;
+}
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(34px, 5.5vw, 58px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -.5px;
+  margin-bottom: 24px;
+}
+.hero p {
+  font-size: clamp(16px, 2vw, 19px);
+  color: rgba(255,255,255,.72);
+  line-height: 1.72;
+  max-width: 600px;
+  margin: 0 auto 44px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: #fff;
+  color: var(--brand);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover { background: var(--grey-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-ghost {
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(255,255,255,.3);
+  cursor: pointer;
+  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.5); }
+.hero-wave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+}
+
+/* ── PILLARS ── */
+.pillars {
+  background: #fff;
+  padding: 88px 28px;
+}
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+.section-title {
+  text-align: center;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.3px;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+.section-sub {
+  text-align: center;
+  font-size: 17px;
+  color: var(--text-mid);
+  max-width: 580px;
+  margin: 0 auto 56px;
+  line-height: 1.65;
+}
+.pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr 96px 1fr;
+  align-items: center;
+  gap: 0;
+}
+.pillar-card {
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  border: 1.5px solid transparent;
+}
+.pillar-card.protection {
+  background: linear-gradient(145deg, #EFF6FF, #DBEAFE88);
+  border-color: #BFDBFE;
+}
+.pillar-card.wealth {
+  background: linear-gradient(145deg, #ECFDF5, #D1FAE588);
+  border-color: #6EE7B7;
+}
+.pillar-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+.protection .pillar-icon { background: #DBEAFE; }
+.wealth .pillar-icon { background: #D1FAE5; }
+.pillar-card h3 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
+.pillar-card > p { font-size: 15px; color: var(--text-mid); line-height: 1.65; margin-bottom: 24px; }
+.pillar-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.pillar-items li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+.pillar-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.protection .pillar-dot { background: #2563EB; }
+.wealth .pillar-dot { background: #059669; }
+
+.pillar-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0 4px;
+}
+.connector-line-v {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, #BFDBFE, #6EE7B7);
+}
+.connector-badge {
+  background: var(--brand);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 10px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.pillar-callout {
+  margin-top: 52px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  border-radius: var(--radius);
+  padding: 44px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.pillar-callout-text h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  max-width: 560px;
+}
+.pillar-callout-text p {
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.65;
+  max-width: 540px;
+}
+.btn-primary-dark {
+  background: #fff;
+  color: var(--brand);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-md);
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.btn-primary-dark:hover { background: var(--grey-light); transform: translateY(-1px); }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: var(--grey-light);
+  padding: 52px 28px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.trust-label {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 28px;
+}
+.carrier-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.carrier-badge {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-mid);
+  letter-spacing: .2px;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+  transition: all .15s;
+}
+.carrier-badge:hover { border-color: var(--brand); color: var(--brand); box-shadow: var(--shadow-md); }
+
+/* ── ABOUT ── */
+.about {
+  background: #fff;
+  padding: 88px 28px;
+}
+.about-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.about-text h2 {
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.3px;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+.about-text p {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.78;
+  margin-bottom: 18px;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-values { display: flex; flex-direction: column; gap: 20px; }
+.value-card {
+  background: var(--grey-light);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: box-shadow .15s;
+}
+.value-card:hover { box-shadow: var(--shadow-md); }
+.value-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.value-text h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.value-text p { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin: 0; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--brand-dark);
+  padding: 52px 28px 28px;
+}
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  flex-wrap: wrap;
+}
+.footer-brand img { height: 44px; width: auto; opacity: .9; }
+.footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.footer-links a {
+  color: rgba(255,255,255,.55);
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.footer-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+.footer-contact {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.8;
+}
+.footer-contact strong { color: rgba(255,255,255,.85); display: block; margin-bottom: 4px; }
+.footer-bottom {
+  padding-top: 24px;
+  font-size: 11px;
+  color: rgba(255,255,255,.28);
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar-connector { flex-direction: row; padding: 10px 0; }
+  .connector-line-v { width: 100%; height: 2px; flex: 1; background: linear-gradient(to right, #BFDBFE, #6EE7B7); }
+  .pillar-callout { flex-direction: column; text-align: center; padding: 36px 28px; }
+}
+@media (max-width: 768px) {
+  .site-nav { display: none; }
+  .nav-toggle { display: block; }
+  .site-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0; right: 0;
+    background: var(--brand-dark);
+    padding: 12px;
+    gap: 2px;
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  .site-nav.open a { display: block; padding: 12px 16px; border-radius: var(--radius-sm); }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-top { flex-direction: column; gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand-logo">
+      <img src="logo.jpg" alt="McPhail Financial Services Inc.">
+    </a>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html" class="active">Home</a>
+      <a href="index.html#approach">Our Approach</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="journey.html" class="nav-cta">Start Journey →</a>
+    </nav>
+    <button class="nav-toggle" onclick="document.getElementById('siteNav').classList.toggle('open')" aria-label="Toggle navigation">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Ontario's Financial Planning Practice</span>
+    <h1>A financial plan that works<br>as hard as you do.</h1>
+    <p>True financial security stands on two pillars: protecting what you've built, and growing toward what's next. We bring both together — with the care of a family practice and the strength of Canada's leading carriers.</p>
+    <div class="hero-ctas">
+      <a href="journey.html" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.14 9 11.31C17.25 22.14 21 17.25 21 12V7L12 2z"/></svg>
+        Start My Financial Journey
+      </a>
+      <a href="index.html#contact" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Get in Touch
+      </a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:64px;">
+    <path d="M0,64 L0,32 C180,0 360,64 540,40 C720,16 900,56 1080,36 C1260,16 1350,48 1440,32 L1440,64 Z" fill="#ffffff"/>
+  </svg>
+</section>
+
+<!-- TWO PILLARS -->
+<section id="approach" class="pillars">
+  <div class="section-inner">
+    <div class="section-label">Our Approach</div>
+    <h2 class="section-title">Two pillars. One complete plan.</h2>
+    <p class="section-sub">Great financial plans don't choose between protection and growth — they build both, each making the other stronger.</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card protection">
+        <div class="pillar-icon">🛡️</div>
+        <h3>Risk Protection</h3>
+        <p>Your income is your greatest asset. A disability, critical illness, or unexpected death can undo years of careful planning in an instant. Protection is the foundation everything else is built on.</p>
+        <ul class="pillar-items">
+          <li><span class="pillar-dot"></span>Disability Income Insurance</li>
+          <li><span class="pillar-dot"></span>Critical Illness Coverage</li>
+          <li><span class="pillar-dot"></span>Life Insurance</li>
+          <li><span class="pillar-dot"></span>Business Overhead Protection</li>
+        </ul>
+      </div>
+
+      <div class="pillar-connector">
+        <div class="connector-line-v"></div>
+        <div class="connector-badge">Together<br>they're<br>stronger</div>
+        <div class="connector-line-v"></div>
+      </div>
+
+      <div class="pillar-card wealth">
+        <div class="pillar-icon">🌱</div>
+        <h3>Wealth Accumulation</h3>
+        <p>Protection without a destination has no purpose. Your wealth plan gives your savings direction — growing toward retirement, family goals, and the legacy you want to leave behind.</p>
+        <ul class="pillar-items">
+          <li><span class="pillar-dot"></span>Investment Planning</li>
+          <li><span class="pillar-dot"></span>Retirement Income Strategy</li>
+          <li><span class="pillar-dot"></span>RRSP / TFSA Optimization</li>
+          <li><span class="pillar-dot"></span>Estate &amp; Legacy Planning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-callout">
+      <div class="pillar-callout-text">
+        <h3>Building wealth without protection is vulnerable. Protection without a wealth plan has no destination.</h3>
+        <p>Together, they create a financial plan that can withstand anything life brings — and keep moving toward everything you're working for.</p>
+      </div>
+      <a href="journey.html" class="btn-primary-dark">See how it fits your life →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="trust-label">Our trusted carrier partners</div>
+  <div class="carrier-row">
+    <div class="carrier-badge">Canada Life</div>
+    <div class="carrier-badge">RBC Insurance</div>
+    <div class="carrier-badge">Manulife</div>
+    <div class="carrier-badge">Mackenzie Investments</div>
+    <div class="carrier-badge">Fidelity</div>
+    <div class="carrier-badge">Quadrus Investments</div>
+    <div class="carrier-badge">IPC Wealth</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <h2>A family practice.<br>A national reach.</h2>
+      <p>McPhail Financial Services is an Ontario-based practice built on the belief that financial advice should feel personal — not transactional. We take the time to understand your whole picture before recommending a single product.</p>
+      <p>What sets us apart is the combination: the warmth and accessibility of a family practice, backed by relationships with Canada's most trusted insurance and investment carriers. You get someone who knows your name — and access to the strongest products in the country.</p>
+      <p>Whether you're starting out, building a family, or planning your exit from the workforce, we'll meet you where you are and help you build something that lasts.</p>
+    </div>
+    <div class="about-values">
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-text">
+          <h4>Personal Relationships</h4>
+          <p>Your advisor knows your name, your goals, and your story — not just your file number. Every recommendation starts with a real conversation.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏛️</div>
+        <div class="value-text">
+          <h4>National Carrier Strength</h4>
+          <p>Access to Canada's most respected insurance and investment companies — Canada Life, Manulife, RBC Insurance, and more.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌳</div>
+        <div class="value-text">
+          <h4>Complete Planning</h4>
+          <p>We look at both pillars together — protection and growth — because a great financial plan needs to address both to truly work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="index.html" class="footer-brand">
+        <img src="logo.jpg" alt="McPhail Financial Services Inc.">
+      </a>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#approach">Our Approach</a>
+        <a href="journey.html">Start Journey</a>
+      </nav>
+      <div class="footer-contact">
+        <strong>Get in touch</strong>
+        Connor McPhail<br>
+        <a href="mailto:connor@mcphailfinancial.ca" style="color:inherit;">connor@mcphailfinancial.ca</a><br>
+        <a href="tel:9055419486" style="color:inherit;">905-541-9486</a><br>
+        Ontario, Canada
+      </div>
+    </div>
+    <div class="footer-bottom">
+      McPhail Financial Services Inc. is licensed to sell insurance products in Ontario, Canada. The information provided on this website is for general informational and educational purposes only and does not constitute financial, insurance, or investment advice. Illustrations and tools are for discussion purposes only. Product availability, premiums, and coverage terms are subject to underwriting approval and carrier guidelines. Always consult with a licensed advisor before making financial decisions. &copy; 2025 McPhail Financial Services Inc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
