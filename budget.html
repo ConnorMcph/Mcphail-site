@@ -10,8 +10,8 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#2A607C;
-  --navy-dark:#1E4D63;
+  --navy:#00537E;
+  --navy-dark:#003D5C;
   --green:#16A34A;
   --green-light:#F0FDF4;
   --amber:#D97706;
@@ -31,7 +31,10 @@ body{font-family:var(--font);background:var(--surface);color:var(--text);font-si
 
 .site-header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18);}
 .header-inner{max-width:980px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
-.header-inner img{height:42px;display:block;}
+.header-inner a{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.header-inner img{height:42px;width:42px;border-radius:10px;display:block;}
+.header-inner .bn{color:#fff;font-size:15px;font-weight:700;letter-spacing:-.2px;white-space:nowrap;}
+@media(max-width:600px){.header-inner .bn{display:none;}}
 .header-tag{color:rgba(255,255,255,.75);font-size:13px;font-weight:500;}
 
 .page{max-width:760px;margin:0 auto;padding:40px 20px 80px;}
@@ -100,7 +103,7 @@ body{font-family:var(--font);background:var(--surface);color:var(--text);font-si
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html"><img src="logo.jpg" alt="McPhail Financial Services Inc."/></a>
+    <a href="index.html"><img src="logo-icon.jpg" alt="McPhail Financial Services Inc."/><span class="bn">McPhail Financial Services</span></a>
     <div class="header-tag">Monthly Budget Check-Up</div>
   </div>
 </header>
@@ -115,7 +118,7 @@ body{font-family:var(--font);background:var(--surface);color:var(--text);font-si
   </div>
 
   <!-- INCOME (optional) -->
-  <button class="income-toggle-btn" id="incomeToggle" onclick="toggleIncome()">+ Add your income (optional) — see whether your month ends in a surplus</button>
+  <button class="income-toggle-btn" id="incomeToggle" onclick="toggleIncome()">+ Add your income (optional) — see what's left at the end of your month</button>
   <div class="card income-card" id="incomeCard">
     <h2><span class="cat-icon">💼</span>Household Income</h2>
     <div class="card-sub">Enter gross (before tax) or net (take-home). If you enter gross, we'll estimate your take-home pay using Ontario rates — because your budget runs on what actually lands in your account.</div>
