@@ -394,6 +394,7 @@ a { text-decoration: none; color: inherit; }
 }
 .carrier-badge:hover { border-color: var(--brand); color: var(--brand); box-shadow: var(--shadow-md); }
 .carrier-badge img { height: 26px; width: auto; display: block; }
+.carrier-badge.ipc { background: #02592C; border-color: #02592C; }
 
 /* ── ABOUT ── */
 .about {
@@ -615,16 +616,22 @@ a { text-decoration: none; color: inherit; }
 </section>
 
 <!-- TRUST BAR -->
+<script>
+  function carrierFallback(img){
+    if (img.src.slice(-4) === '.png') { img.src = img.src.slice(0, -4) + '.svg'; }
+    else { img.parentNode.classList.remove('ipc'); img.outerHTML = img.alt; }
+  }
+</script>
 <section class="trust-bar">
   <div class="trust-label">Our trusted carrier partners</div>
   <div class="carrier-row">
-    <div class="carrier-badge"><img src="carriers/canada-life.png" alt="Canada Life" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/rbc-insurance.png" alt="RBC Insurance" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/manulife.png" alt="Manulife" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/mackenzie.png" alt="Mackenzie Investments" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/fidelity.png" alt="Fidelity" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/quadrus.png" alt="Quadrus Investments" onerror="this.outerHTML=this.alt"></div>
-    <div class="carrier-badge"><img src="carriers/ipc.png" alt="IPC Wealth" onerror="this.outerHTML=this.alt"></div>
+    <div class="carrier-badge"><img src="carriers/canada-life.png" alt="Canada Life" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge"><img src="carriers/rbc-insurance.png" alt="RBC Insurance" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge"><img src="carriers/manulife.png" alt="Manulife" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge"><img src="carriers/mackenzie.png" alt="Mackenzie Investments" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge"><img src="carriers/fidelity.png" alt="Fidelity" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge"><img src="carriers/quadrus.png" alt="Quadrus Investments" onerror="carrierFallback(this)"></div>
+    <div class="carrier-badge ipc"><img src="carriers/ipc.png" alt="Investment Planning Counsel" onerror="carrierFallback(this)"></div>
   </div>
 </section>
 
